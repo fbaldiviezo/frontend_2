@@ -1,5 +1,37 @@
-<footer
-  class="fixed bottom-0 left-0 w-full h-12 bg-gray-800 text-white flex items-center justify-center"
->
-  <p>&copy; 2025 Mi Aplicación. Todos los derechos reservados.</p>
+<footer class="fixed bottom-0 w-full shadow-lg bg-white">
+  <div class="max-w-9xl mx-auto px-4">
+    <div class="flex justify-between items-center h-20">
+      <!-- Etiqueta de usuario -->
+      <div class="flex gap-4 items-center text-sm w-3/6 text-gray-700">
+        <div class="avatar">
+          <div class="w-15 rounded-full">
+            <img
+              src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"
+              class="rounded-full"
+            />
+          </div>
+        </div>
+        <p>{{ user.response() ? user.getNameUser() : 'Invitado' }}</p>
+      </div>
+
+      <!-- Copyright -->
+      <div class="text-sm w-2/6 text-gray-700 text-center">
+        <p>Copyright © Fernando Baldiviezo</p>
+      </div>
+
+      <!-- Fecha literal -->
+      <div class="text-sm w-1/6 text-gray-700 text-center">
+        {{ date() | date : 'EEEE, MMMM d, y' }}
+      </div>
+
+      <!-- Deslogearse y logearse del sistema -->
+      <div class="w-1/6 text-right">
+        @if(user.isAuth()) {
+        <button (click)="user.logOut()" class="btn btn-error font-medium text-white">Salir</button>
+        } @else {
+        <button (click)="openDialog()" class="btn btn-info font-medium text-white">Ingresar</button>
+        }
+      </div>
+    </div>
+  </div>
 </footer>

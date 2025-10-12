@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Toolbar } from './shared/components/toolbar/toolbar';
+import { ToolbarPage } from './shared/components/toolbar/toolbar-page/toolbar-page';
 import { Footer } from './shared/components/footer/footer';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Toolbar, Footer],
+  imports: [RouterOutlet, Footer, ToolbarPage],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

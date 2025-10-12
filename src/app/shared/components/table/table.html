@@ -1,0 +1,88 @@
+<table mat-table [dataSource]="dataSource" class="!border-gray-200">
+  @for (column of columns(); track column) {
+  <ng-container [matColumnDef]="column.columnDef">
+    <th mat-header-cell *matHeaderCellDef class="!border-gray-200 !text-[var(--color-text-subtle)]">
+      {{ column.header }}
+    </th>
+    <td mat-cell *matCellDef="let row" class="!border-gray-200" (click)="emitData.emit(row)">
+      @switch (column.columnDef) { @case ("foto") {
+      <div>
+        <img
+          [src]="row.foto ? row.foto : '/assets/default-user-icon.svg'"
+          alt="Foto de perfil"
+          class="w-10 h-10 object-cover rounded-full border-2 border-gray-300"
+        />
+      </div>
+      } @case ("estado") {
+      <div>
+        <mat-icon fontSet="material-symbols-outlined" class="!text-[20px]">
+          {{ row.estado ? 'thumb_up' : 'thumb_down' }}
+        </mat-icon>
+      </div>
+      } @case ("m") {
+      <div>
+        <mat-icon
+          fontSet="material-symbols-outlined"
+          class="!text-[20px] cursor-pointer"
+          (click)="onEdit.emit(row)"
+          >edit</mat-icon
+        >
+      </div>
+      } @case ("b") {
+      <div>
+        <mat-icon
+          fontSet="material-symbols-outlined"
+          class="!text-[20px] cursor-pointer"
+          (click)="onDelete.emit(row)"
+          >delete</mat-icon
+        >
+      </div>
+      } @case ("h") {
+      <div>
+        <mat-icon
+          fontSet="material-symbols-outlined"
+          class="!text-[20px] cursor-pointer"
+          (click)="onEnable.emit(row)"
+          >sync</mat-icon
+        >
+      </div>
+      } @case ("v") {
+      <div>
+        <mat-icon fontSet="material-symbols-outlined" class="!text-[20px] cursor-pointer"
+          >print</mat-icon
+        >
+      </div>
+      } @case ("k") {
+      <div>
+        @if(row.user) {
+        <mat-icon
+          fontSet="material-symbols-outlined"
+          class="!text-[20px] cursor-pointer text-sky-500"
+          (click)="onEditData.emit(row)"
+          >lock_open</mat-icon
+        >
+        } @else {
+        <mat-icon
+          fontSet="material-symbols-outlined"
+          class="!text-[20px] cursor-pointer text-red-500"
+          (click)="onRegisterData.emit(row)"
+          >lock</mat-icon
+        >
+        }
+      </div>
+      } @default {
+      {{ column.cell(row) }}
+      } }
+    </td></ng-container
+  >
+
+  }
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns" class="!border-gray-200"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: displayedColumns"
+    class="!border-gray-200 !text-[var(--color-text)]"
+  ></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 15, 20]" aria-label="Select page of users"></mat-paginator>
