@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { UserApiService } from '../../services/user-service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ComunicationService } from '../../services/comunication-service';
 import { ConfirmationDialog } from '../../../../shared/components/dialogs/confirmation-dialog/confirmation-dialog';
 
@@ -13,7 +14,18 @@ import { ConfirmationDialog } from '../../../../shared/components/dialogs/confir
 export class DisableUserDialog {
   private userService = inject(UserApiService)
   private dialogRef = inject(MatDialogRef<ConfirmationDialog>)
+  private snackBar = inject(MatSnackBar)
+  private durationSeconts = 5
   comunication = inject(ComunicationService)
+
+  openSnackBar() {
+    this.snackBar.open('Eliminado con exito!', 'cerrar', {
+      duration: this.durationSeconts * 1000,
+      panelClass: ['success-snackbar'],
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    })
+  }
 
   disableUser() {
     const codp = Number(this.comunication.selectedUser()?.codp)
@@ -22,6 +34,7 @@ export class DisableUserDialog {
         console.log('eliminado con exito')
         this.comunication.notifyUsersListRefresh()
         this.close()
+        this.openSnackBar()
       },
       error: () => {
         console.log('ocurrio un error')

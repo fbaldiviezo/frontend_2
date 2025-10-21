@@ -6,6 +6,7 @@ import { MediaService } from '../../services/media-service';
 import { ComunicationService } from '../../services/comunication-service';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { PersonRequest } from '../../models/person-request';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-modif-user-form-dialog',
@@ -19,6 +20,17 @@ export class ModifUserFormDialog implements OnInit {
   private mediaService = inject(MediaService)
   private selectedFile: File | null = null
   comunication = inject(ComunicationService)
+  private snackBar = inject(MatSnackBar)
+  private durationSeconts = 5
+
+  openSnackBar() {
+    this.snackBar.open('Persona modificada con exito!', 'cerrar', {
+      duration: this.durationSeconts * 1000,
+      panelClass: ['success-snackbar'],
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    })
+  }
 
   form = new FormGroup({
     cedula: new FormControl('', Validators.required),
@@ -112,6 +124,7 @@ export class ModifUserFormDialog implements OnInit {
           console.log(data)
           this.comunication.notifyUsersListRefresh()
           this.close()
+          this.openSnackBar()
         },
         error: (err) => {
           console.log('error', err)

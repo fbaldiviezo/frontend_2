@@ -1,0 +1,70 @@
+<div class="w-full bg-white shadow-md rounded-lg p-4 text-gray-700 mb-20">
+  <!-- Titulo -->
+  <h2 class="text-lg font-semibold mb-4">Gestión de Roles :</h2>
+
+  <!--Filtros en fila-->
+  <div class="flex flex-wrap items-center justify-center gap-6">
+    <!-- Filtro -->
+    <div class="flex items-center gap-2">
+      <label for="filtro" class="text-sm font-medium">Filtro:</label>
+      <input
+        type="text"
+        id="filtro"
+        placeholder="Buscar usuario..."
+        class="input bg-white"
+        #input
+        (keyup)="query.set(input.value)"
+      />
+    </div>
+
+    <!-- Filtro de estados :para cada input" -->
+    <div class="flex items-center gap-4">
+      <label class="flex items-center gap-1 text-sm">
+        <input
+          type="radio"
+          name="estado"
+          value="1"
+          class="accent-blue-500"
+          (change)="onRadioChanges($event)"
+        />
+        Activos
+      </label>
+      <label class="flex items-center gap-1 text-sm">
+        <input
+          type="radio"
+          name="estado"
+          value="0"
+          class="accent-blue-500"
+          (change)="onRadioChanges($event)"
+        />
+        Bajas
+      </label>
+      <label class="flex items-center gap-1 text-sm">
+        <input
+          type="radio"
+          name="estado"
+          value="2"
+          class="accent-blue-500"
+          checked="checked"
+          (change)="onRadioChanges($event)"
+        />
+        Todos
+      </label>
+    </div>
+    <!-- Botón de nuevo personal -->
+    <div>
+      <button
+        type="button"
+        class="btn btn-success text-white font-medium flex items-center gap-1"
+        (click)="openDialogRolRegister()"
+      >
+        <mat-icon fontSet="material-symbols-outlined">add</mat-icon>
+        Nuevo Rol
+      </button>
+    </div>
+  </div>
+  <!-- tabla de roles -->
+  <div class="items-center justify-center">
+    <app-roles-list [query]="query()" />
+  </div>
+</div>

@@ -34,6 +34,7 @@ export class TableComponent {
   onEnable = output()
   onRegisterData = output()
   onEditData = output()
+  onOpenPdf = output()
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 

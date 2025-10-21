@@ -1,0 +1,10 @@
+<div class="mat-elevation-z8 overflow-auto rounded-lg mt-10">
+  <app-table
+    [data]="roles()"
+    [columns]="columns()"
+    (onEdit)="modifyRol($event)"
+    (onDelete)="disableRol($event)"
+    (onEnable)="enableRol($event)"
+    [query]="query()"
+  ></app-table>
+</div>

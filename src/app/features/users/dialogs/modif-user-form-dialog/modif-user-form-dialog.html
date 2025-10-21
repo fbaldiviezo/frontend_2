@@ -13,36 +13,24 @@
   <form [formGroup]="form" (ngSubmit)="submit()" class="w-full max-w-2xl bg-white">
     <div class="space-y-2 mb-6">
       <label for="cedula" class="block text-sm font-medium text-gray-700">Cédula</label>
-      <input
-        type="text"
-        id="cedula"
-        formControlName="cedula"
-        class="input w-full"
-        placeholder="Ej: 12345678"
-      />
+      <input type="text" id="cedula" formControlName="cedula" class="input w-full" readonly />
     </div>
 
     <div formGroupName="persona" class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
       <div class="md:col-span-1">
         <div class="space-y-2 mb-4">
           <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre</label>
-          <input
-            type="text"
-            id="nombre"
-            formControlName="nombre"
-            class="input"
-            placeholder="Ej: Juan"
-          />
+          <input type="text" id="nombre" formControlName="nombre" class="input" />
         </div>
 
         <div class="space-y-2 mb-4">
           <label for="ap" class="block text-sm font-medium text-gray-700">Apellido Paterno</label>
-          <input type="text" id="ap" formControlName="ap" class="input" placeholder="Ej: Pérez" />
+          <input type="text" id="ap" formControlName="ap" class="input" />
         </div>
 
         <div class="space-y-2 mb-4">
           <label for="am" class="block text-sm font-medium text-gray-700">Apellido Materno</label>
-          <input type="text" id="am" formControlName="am" class="input" placeholder="Ej: Soto" />
+          <input type="text" id="am" formControlName="am" class="input" />
         </div>
 
         <div class="space-y-2 mb-4">
@@ -80,24 +68,12 @@
       <div class="md:col-span-1">
         <div class="space-y-2 mb-4">
           <label for="direc" class="block text-sm font-medium text-gray-700">Dirección</label>
-          <input
-            type="text"
-            id="direc"
-            formControlName="direc"
-            class="input"
-            placeholder="Ej: Calle 1, No 50"
-          />
+          <input type="text" id="direc" formControlName="direc" class="input" />
         </div>
 
         <div class="space-y-2 mb-4">
           <label for="telf" class="block text-sm font-medium text-gray-700">Teléfono</label>
-          <input
-            type="text"
-            id="telf"
-            formControlName="telf"
-            class="input"
-            placeholder="Ej: 70012345"
-          />
+          <input type="text" id="telf" formControlName="telf" class="input" />
         </div>
 
         <div class="space-y-2 mb-4">
@@ -169,7 +145,7 @@
         [disabled]="form.invalid"
         class="btn btn-info text-white font-medium"
       >
-        Registrar Persona
+        Modificar Persona
       </button>
     </div>
   </form>

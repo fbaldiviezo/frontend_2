@@ -48,7 +48,10 @@
       </div>
       } @case ("v") {
       <div>
-        <mat-icon fontSet="material-symbols-outlined" class="!text-[20px] cursor-pointer"
+        <mat-icon
+          fontSet="material-symbols-outlined"
+          class="!text-[20px] cursor-pointer"
+          (click)="onOpenPdf.emit(row)"
           >print</mat-icon
         >
       </div>

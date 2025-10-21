@@ -5,10 +5,19 @@
       <div class="flex gap-4 items-center text-sm w-3/6 text-gray-700">
         <div class="avatar">
           <div class="w-15 rounded-full">
+            @if(user.response()) {
+            <img
+              [src]="user.response()?.persona?.foto"
+              class="rounded-full"
+              alt="Foto de perfil del usuario"
+            />
+            } @else {
             <img
               src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"
               class="rounded-full"
+              alt="Foto de perfil por defecto"
             />
+            }
           </div>
         </div>
         <p>{{ user.response() ? user.getNameUser() : 'Invitado' }}</p>

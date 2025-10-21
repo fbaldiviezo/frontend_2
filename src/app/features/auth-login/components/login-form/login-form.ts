@@ -15,6 +15,7 @@ export class LoginForm {
   private loginService = inject(LogInApiService)
   private user = inject(UserDetails)
   private dialogRef = inject(MatDialogRef<FormDialog>)
+  errorMesagge = signal<string>('')
 
   form = new FormGroup({
     login: new FormControl('', Validators.required),
@@ -23,6 +24,8 @@ export class LoginForm {
 
   submit() {
     if(!this.form.valid) return
+
+    this.errorMesagge.set('')
     const login = this.form.get('login')?.value ?? ''
     const password = this.form.get('password')?.value ?? ''
     const loginData = { login, password }
@@ -30,6 +33,9 @@ export class LoginForm {
       next: (response) => {
         this.user.setCurrentSession(response)
         this.dialogRef.close()
+      },
+      error: () => {
+        this.errorMesagge.set('Datos de ingreso incorrectos')
       }
     })
   }

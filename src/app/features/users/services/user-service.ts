@@ -13,7 +13,6 @@ import { PersonRequest } from '../models/person-request';
 @Injectable({providedIn: 'root'})
 export class UserApiService {
     private http = inject(HttpClient)
-    private user = inject(UserDetails)  
     private apiUrl = environment.apiUrl
 
     registerUser(register: RegisterPersonalRequest): Observable<Persona> {

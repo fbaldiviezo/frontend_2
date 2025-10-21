@@ -1,0 +1,42 @@
+<div class="p-8 w-100 h-full flex flex-col items-center justify-center bg-white">
+  <div class="mb-8 text-center w-full max-w-lg">
+    <h1 class="text-3xl font-extrabold text-gray-900">Modificar un Menu</h1>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="space-y-2 mb-6">
+      <label for="login" class="block text-sm font-medium text-gray-700">Nombre del menu</label>
+      <input type="text" id="login" formControlName="name" class="input block w-full" />
+    </div>
+
+    <div class="flex flex-row justify-center gap-10 w-full">
+      <button
+        type="button"
+        onclick="my_modal_5.showModal()"
+        [disabled]="form.invalid"
+        class="btn btn-info text-white font-medium"
+      >
+        Guardar
+      </button>
+      <button type="button" class="btn btn-error text-white font-medium" (click)="close()">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>
+
+<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box text-center">
+    <h3 class="text-lg font-bold">Seguro de modificar el Menu?</h3>
+    <p class="py-4">Confirma que todos los datos ingresados son correctos.</p>
+
+    <div class="modal-action flex justify-center">
+      <form method="dialog" class="flex gap-4">
+        <button class="btn btn-error text-white font-medium" (click)="close()">Cancelar</button>
+        <button type="submit" class="btn btn-info text-white font-medium" (click)="submit()">
+          Aceptar
+        </button>
+      </form>
+    </div>
+  </div>
+</dialog>

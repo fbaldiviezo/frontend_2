@@ -13,7 +13,8 @@ registerLocaleData(localEs)
   selector: 'app-footer',
   imports: [DatePipe],
   templateUrl: './footer.html',
-  styleUrl: './footer.css'
+  styleUrl: './footer.css',
+  providers: [{provide: LOCALE_ID, useValue:'es'}]
 })
 export class Footer implements OnInit {
   private dateService = inject(DateService)

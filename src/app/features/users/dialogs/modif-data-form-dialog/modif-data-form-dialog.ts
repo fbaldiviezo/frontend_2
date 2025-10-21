@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UserApiService } from '../../services/user-service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormDialog } from '../../../../shared/components/dialogs/form-dialog/form-dialog';
 import { ComunicationService } from '../../services/comunication-service';
 import { ChangePasswordRequest } from '../../models/change-password-request';
@@ -24,11 +25,21 @@ export const passwordMatchValidator: ValidatorFn = (control: AbstractControl): V
 export class ModifDataFormDialog implements OnInit {
   private userService = inject(UserApiService)
   private dialogRef = inject(MatDialogRef<FormDialog>)
+  private snackBar = inject(MatSnackBar)
+  private durationSeconts = 5
   comunication = inject(ComunicationService)
+
+  openSnackBar() {
+    this.snackBar.open('Contraseña modificada con exito!', 'cerrar', {
+      duration: this.durationSeconts * 1000,
+      panelClass: ['success-snackbar'],
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    })
+  }
 
   form =  new FormGroup({
     login: new FormControl(''),
-    oldPassword: new FormControl('', Validators.required),
     newPassword: new FormControl('', Validators.required),
     newPasswordConfirm: new FormControl('', Validators.required)
   },
@@ -43,7 +54,6 @@ export class ModifDataFormDialog implements OnInit {
     const loginValue = user?.user?.login ?? ''; 
     this.form.patchValue({
         login: loginValue,
-        oldPassword: '',
         newPassword: '',
         newPasswordConfirm: ''
     });
@@ -52,7 +62,6 @@ export class ModifDataFormDialog implements OnInit {
   modifData() {
     const request: ChangePasswordRequest = {
       login: String(this.comunication.selectedUser()?.user.login),
-      oldPassword: this.form.get('oldPassword')?.value ?? '',
       newPassword: this.form.get('newPassword')?.value ?? '',
     }
 
@@ -61,6 +70,7 @@ export class ModifDataFormDialog implements OnInit {
         console.log('contra cambiada')
         this.comunication.notifyUsersListRefresh()
         this.close()
+        this.openSnackBar()
       },
       error: () => {
         console.log('hubo un error')

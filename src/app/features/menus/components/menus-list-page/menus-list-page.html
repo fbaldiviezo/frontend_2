@@ -1,0 +1,10 @@
+<div class="mat-elevation-z8 overflow-auto rounded-lg mt-10">
+  <app-table
+    [data]="menus()"
+    [columns]="columns()"
+    (onEdit)="modifyMenu($event)"
+    (onDelete)="disableMenu($event)"
+    (onEnable)="enableMenu($event)"
+    [query]="query()"
+  ></app-table>
+</div>

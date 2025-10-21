@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Vista previa del PDF</h2>
+<mat-dialog-content class="p-0">
+  <iframe
+    id="pdf-frame"
+    [src]="safePdfUrl"
+    width="100%"
+    height="500px"
+    style="border: none"
+  ></iframe>
+</mat-dialog-content>
+<mat-dialog-actions class="flex gap-4 items-end">
+  <button (click)="printPdf()" class="btn btn-info text-white font-medium">Imprimir</button>
+  <button (click)="close()" class="btn btn-error text-white font-medium">Cerrar</button>
+</mat-dialog-actions>

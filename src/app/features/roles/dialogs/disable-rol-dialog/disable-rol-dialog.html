@@ -1,0 +1,22 @@
+@if(comunication.selectedRole()?.estado === 0) {
+<div class="p-8 w-full flex flex-col items-center justify-center">
+  <div class="mb-6 text-center">
+    <h1 class="text-2xl font-bold text-gray-800">El rol ya esta eliminado</h1>
+  </div>
+  <button class="btn btn-error text-white font-medium w-full" (click)="close()">Cerrar</button>
+</div>
+} @else {
+<div class="p-8 w-full flex flex-col items-center justify-center">
+  <div class="mb-6 text-center">
+    <h1 class="text-2xl font-bold text-gray-800">
+      ¿Está seguro de eliminar el rol de {{ comunication.selectedRole()?.nombre }}?
+    </h1>
+  </div>
+
+  <div class="flex flex-row gap-6 mt-4 w-full justify-center">
+    <button class="btn btn-info text-white font-medium" (click)="disableRol()">Aceptar</button>
+
+    <button class="btn btn-error text-white font-medium" (click)="close()">Cancelar</button>
+  </div>
+</div>
+}

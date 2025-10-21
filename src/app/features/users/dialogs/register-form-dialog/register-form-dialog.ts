@@ -6,6 +6,7 @@ import { MediaService } from '../../services/media-service';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { RegisterPersonalRequest } from '../../models/register-request';
 import { ComunicationService } from '../../services/comunication-service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register-form-dialog',
@@ -19,6 +20,17 @@ export class RegisterFormDialog {
   private mediaService = inject(MediaService)
   private comunication = inject(ComunicationService)
   private selectedFile: File | null = null
+  private snackBar = inject(MatSnackBar)
+  private durationSeconts = 5
+
+  openSnackBar() {
+    this.snackBar.open('Persona registrada con exito!', 'cerrar', {
+      duration: this.durationSeconts * 1000,
+      panelClass: ['success-snackbar'],
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    })
+  }
 
   form = new FormGroup({
     cedula: new FormControl('', Validators.required),
@@ -63,6 +75,7 @@ export class RegisterFormDialog {
         console.log(data)
         this.comunication.notifyUsersListRefresh()
         this.close()
+        this.openSnackBar()
       },
       error: (err) => {
         console.log('Error al registrar', err)
