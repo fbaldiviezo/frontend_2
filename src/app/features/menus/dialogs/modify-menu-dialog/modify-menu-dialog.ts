@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ComnunicationMenusService } from '../../services/comunications-menus-service';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { MenuRequest } from '../../models/menu-request';
+import { MenuRequest } from '../../../../core/models/aplication-requests';
 
 @Component({
   selector: 'app-modify-menu-dialog',

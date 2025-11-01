@@ -1,0 +1,88 @@
+<div class="w-full bg-white shadow-xl rounded-xl p-6 text-gray-800 mb-20">
+  <h2 class="text-2xl font-bold border-b pb-3 mb-6 text-gray-800">
+    Asignación de Procesos a Menús
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="w-full">
+      <div class="flex items-center justify-center mb-3">
+        <h1 class="text-xl font-semibold mb-2">Lista de Menús</h1>
+      </div>
+
+      <div class="flex items-center gap-2 p-2">
+        <label for="inputMenu" class="text-sm font-medium text-gray-600">Filtro</label>
+        <input
+          type="text"
+          id="inputMenu"
+          placeholder="Buscar menú..."
+          class="input w-full"
+          #inputMenu
+          (keyup)="queryMenu.set(inputMenu.value)"
+        />
+      </div>
+
+      <div class="w-full overflow-hidden">
+        <app-menus-list [query]="queryMenu()" />
+      </div>
+    </div>
+
+    <div class="w-full">
+      <div class="flex items-center justify-center mb-3">
+        <h1 class="text-xl font-semibold mb-2">Lista de Procesos</h1>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-6">
+        <div class="flex items-center gap-2 p-2">
+          <label for="inputProcess" class="text-sm font-medium text-gray-600">Filtro</label>
+          <input
+            type="text"
+            id="inputProcess"
+            placeholder="Buscar proceso..."
+            class="input w-full"
+            #inputProcess
+            (keyup)="queryProcess.set(inputProcess.value)"
+          />
+        </div>
+        <div class="flex items-center gap-4">
+          <label class="flex items-center gap-1 text-sm">
+            <input
+              type="radio"
+              name="estado"
+              value="3"
+              class="accent-blue-500"
+              (change)="onRadioChanges($event)"
+            />
+            No asignados
+          </label>
+          <label class="flex items-center gap-1 text-sm">
+            <input
+              type="radio"
+              name="estado"
+              value="2"
+              class="accent-blue-500"
+              (change)="onRadioChanges($event)"
+            />
+            Si Asignados
+          </label>
+          <label class="flex items-center gap-1 text-sm">
+            <input
+              type="radio"
+              name="estado"
+              value="1"
+              class="accent-blue-500"
+              checked="checked"
+              (change)="onRadioChanges($event)"
+            />
+            Todos
+          </label>
+        </div>
+      </div>
+
+      <div class="w-full overflow-hidden">
+        <app-process-list
+          [query]="queryProcess()"
+          (processCheckChange)="handleProcessAssignment($event)"
+        />
+      </div>
+    </div>
+  </div>
+</div>

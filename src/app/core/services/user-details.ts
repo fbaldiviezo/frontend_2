@@ -1,5 +1,5 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { AuthResponse } from '../models/auth-response';
+import { AuthResponse } from '../models/aplication-response';
 import { Menu, Rol } from '../models/user-data';
 import { Router } from '@angular/router';
 

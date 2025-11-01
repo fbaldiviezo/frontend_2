@@ -1,14 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { UserDetails } from '../../../core/services/user-details';
 import { environment } from '../../../../environments/environment.development';
-import { RegisterPersonalRequest } from '../models/register-request';
+import { PersonalData2, RegisterPersonalRequest } from '../../../core/models/aplication-requests';
 import { Observable } from 'rxjs';
 import { Persona } from '../../../core/models/user-data';
-import { RegisterDataRequest } from '../models/register-data-request';
-import { ChangePasswordRequest } from '../models/change-password-request';
-import { AuthResponse } from '../../../core/models/auth-response';
-import { PersonRequest } from '../models/person-request';
+import { RegisterDataRequest } from '../../../core/models/aplication-requests';
+import { ChangePasswordRequest } from '../../../core/models/aplication-requests';
+import { AuthResponse } from '../../../core/models/aplication-response';
 
 @Injectable({providedIn: 'root'})
 export class UserApiService {
@@ -35,7 +33,9 @@ export class UserApiService {
         return this.http.put(`${this.apiUrl}api/personals/${id}/${state}`, null)
     }
 
-    updatePersonal(person: PersonRequest, id: number): Observable<Persona> {
+    updatePersonal(person: PersonalData2, id: number): Observable<Persona> {
+        console.log(person);
+        
         return this.http.put<Persona>(`${this.apiUrl}api/personals/${id}`, person)
     }
 }

@@ -5,7 +5,7 @@ import { FormDialog } from '../../../../shared/components/dialogs/form-dialog/fo
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ComnunicationMenusService } from '../../services/comunications-menus-service';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { MenuRequest } from '../../models/menu-request';
+import { MenuRequest } from '../../../../core/models/aplication-requests';
 
 @Component({
   selector: 'app-register-menu-dialog',

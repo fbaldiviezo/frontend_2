@@ -3,7 +3,7 @@ import { RolApiService } from '../../services/rol-service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ComunicationRolesService } from '../../services/comunications-roles-service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RolRequest } from '../../models/role-request';
+import { RolRequest } from '../../../../core/models/aplication-requests';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({

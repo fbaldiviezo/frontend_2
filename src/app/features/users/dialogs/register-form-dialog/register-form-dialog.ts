@@ -4,7 +4,7 @@ import { FormDialog } from '../../../../shared/components/dialogs/form-dialog/fo
 import { UserApiService } from '../../services/user-service';
 import { MediaService } from '../../services/media-service';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { RegisterPersonalRequest } from '../../models/register-request';
+import { RegisterPersonalRequest } from '../../../../core/models/aplication-requests';
 import { ComunicationService } from '../../services/comunication-service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

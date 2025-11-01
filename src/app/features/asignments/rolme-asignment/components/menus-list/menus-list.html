@@ -1,0 +1,8 @@
+<div class="mat-elevation-z8 overflow-auto rounded-lg mt-10">
+  <app-table
+    [data]="menus()"
+    [columns]="columns()"
+    [query]="query()"
+    (onCheckChange)="menusCheckChange.emit($event)"
+  ></app-table>
+</div>

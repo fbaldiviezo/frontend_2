@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment.development';
 import { Observable } from 'rxjs';
-import { AuthResponse } from '../../../core/models/auth-response';
+import { AuthResponse } from '../../../core/models/aplication-response';
 
 export interface FormLogin {
     login: string

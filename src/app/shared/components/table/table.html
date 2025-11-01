@@ -5,7 +5,16 @@
       {{ column.header }}
     </th>
     <td mat-cell *matCellDef="let row" class="!border-gray-200" (click)="emitData.emit(row)">
-      @switch (column.columnDef) { @case ("foto") {
+      @switch (column.columnDef) { @case ("radio-select") {
+      <input type="radio" name="radio" (change)="onSendObject.emit(row)" />
+      } @case ("check-select") {
+      <input
+        type="checkbox"
+        name="check"
+        [checked]="row.relacion === true"
+        (change)="onCheckChange.emit({ row: row, checked: $event.target.checked })"
+      />
+      } @case ("foto") {
       <div>
         <img
           [src]="row.foto ? row.foto : '/assets/default-user-icon.svg'"

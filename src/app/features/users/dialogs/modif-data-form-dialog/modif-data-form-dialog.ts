@@ -5,7 +5,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormDialog } from '../../../../shared/components/dialogs/form-dialog/form-dialog';
 import { ComunicationService } from '../../services/comunication-service';
-import { ChangePasswordRequest } from '../../models/change-password-request';
+import { ChangePasswordRequest } from '../../../../core/models/aplication-requests';
 
 export const passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const password = control.get('newPassword')

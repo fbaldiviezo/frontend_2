@@ -1,0 +1,8 @@
+<div class="mat-elevation-z8 overflow-auto rounded-lg mt-10">
+  <app-table
+    [data]="menus()"
+    [columns]="columns()"
+    [query]="query()"
+    (onSendObject)="notifySelectedMenu($event)"
+  ></app-table>
+</div>

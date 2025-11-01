@@ -1,30 +1,30 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../../environments/environment.development';
-import { Roles } from '../models/role-response';
+import { RoleApiResponse } from '../../../core/models/aplication-response';
 import { Observable, Subject } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class ComunicationRolesService {
     private http = inject(HttpClient)
     private apiUrl = environment.apiUrl
-    roles = signal<Roles[] | null>(null)
-    selectedRole = signal<Roles | null>(null)
+    roles = signal<RoleApiResponse[] | null>(null)
+    selectedRole = signal<RoleApiResponse | null>(null)
     public rolesListRefresh$ = new Subject<void>()
 
     notifyRolesListRefresh() {
         this.rolesListRefresh$.next();
     }
 
-    fetchRoles(): Observable<Roles[]> {
-        return this.http.get<Roles[]>(`${this.apiUrl}api/roles`)
+    fetchRoles(): Observable<RoleApiResponse[]> {
+        return this.http.get<RoleApiResponse[]>(`${this.apiUrl}api/roles`)
     }
 
-    fetchFilteredRole(state: number): Observable<Roles[]> {
-        return this.http.get<Roles[]>(`${this.apiUrl}api/roles/filter/${state}`)
+    fetchFilteredRole(state: number): Observable<RoleApiResponse[]> {
+        return this.http.get<RoleApiResponse[]>(`${this.apiUrl}api/roles/filter/${state}`)
     }
 
-    sendRol(): Roles | null {
+    sendRol(): RoleApiResponse | null {
         return this.selectedRole()
     }
 }

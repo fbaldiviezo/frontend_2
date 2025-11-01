@@ -1,0 +1,8 @@
+<div class="mat-elevation-z8 overflow-auto rounded-lg mt-10">
+  <app-table
+    [data]="roles()"
+    [columns]="columns()"
+    [query]="query()"
+    (onSendObject)="notifySelectedRole($event)"
+  ></app-table>
+</div>

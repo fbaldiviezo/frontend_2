@@ -5,7 +5,7 @@ import { UserApiService } from '../../services/user-service';
 import { MediaService } from '../../services/media-service';
 import { ComunicationService } from '../../services/comunication-service';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { PersonRequest } from '../../models/person-request';
+import { PersonalData2 } from '../../../../core/models/aplication-requests';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -59,8 +59,8 @@ export class ModifUserFormDialog implements OnInit {
     console.warn('No hay usuario seleccionado');
     return;
   }
-  let fechaFormateada: string = '';
-  if (selectedUser.fnac instanceof Date) fechaFormateada = selectedUser.fnac.toISOString().split('T')[0];
+  const fecha = new Date(selectedUser.fnac)
+  const iso = fecha.toISOString().substring(0, 10);
 
   this.form.patchValue({
     cedula: selectedUser.datos?.id?.cedula || '',
@@ -69,7 +69,7 @@ export class ModifUserFormDialog implements OnInit {
       ap: selectedUser.ap || '',
       am: selectedUser.am || '',
       estado: selectedUser.estado ?? 1,
-      fnac: fechaFormateada || '',
+      fnac: iso || '',
       ecivil: selectedUser.ecivil || '',
       genero: selectedUser.genero || '',
       direc: selectedUser.direc || '',
@@ -104,7 +104,9 @@ export class ModifUserFormDialog implements OnInit {
   }
 
   updatePerson() {
-      const registerData: PersonRequest = {
+      const registerData: PersonalData2 = {
+        oldCedula: String(this.comunication.selectedUser()?.datos.id.cedula),
+        newCedula: this.form.get('cedula')?.value ?? String(this.comunication.selectedUser()?.datos.id.cedula),
         codp: this.comunication.selectedUser()?.codp ?? 0,
         nombre: this.form.get('persona.nombre')?.value ?? '',
         ap: this.form.get('persona.ap')?.value ?? '',
@@ -118,6 +120,8 @@ export class ModifUserFormDialog implements OnInit {
         tipo: this.form.get('persona.tipo')?.value ?? '',
         foto: this.form.get('persona.foto')?.value ?? '',
       }
+
+      console.log(registerData);
 
       this.userService.updatePersonal(registerData, Number(this.comunication.selectedUser()?.codp)).subscribe({
         next: (data) => {

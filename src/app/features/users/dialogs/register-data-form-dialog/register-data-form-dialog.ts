@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormDialog } from '../../../../shared/components/dialogs/form-dialog/form-dialog';
 import { ComunicationService } from '../../services/comunication-service';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
-import { RegisterDataRequest } from '../../models/register-data-request';
+import { RegisterDataRequest } from '../../../../core/models/aplication-requests';
 
 export const passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const password = control.get('password')

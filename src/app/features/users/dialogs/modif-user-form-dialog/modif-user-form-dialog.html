@@ -13,7 +13,7 @@
   <form [formGroup]="form" (ngSubmit)="submit()" class="w-full max-w-2xl bg-white">
     <div class="space-y-2 mb-6">
       <label for="cedula" class="block text-sm font-medium text-gray-700">Cédula</label>
-      <input type="text" id="cedula" formControlName="cedula" class="input w-full" readonly />
+      <input type="text" id="cedula" formControlName="cedula" class="input w-full" />
     </div>
 
     <div formGroupName="persona" class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">

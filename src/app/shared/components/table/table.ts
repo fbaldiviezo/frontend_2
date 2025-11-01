@@ -35,6 +35,8 @@ export class TableComponent {
   onRegisterData = output()
   onEditData = output()
   onOpenPdf = output()
+  onSendObject = output()
+  onCheckChange = output<{ row: any, checked: boolean }>()
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
